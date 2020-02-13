@@ -11,6 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Views\api.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Views\index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
