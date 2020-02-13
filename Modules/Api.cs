@@ -82,6 +82,41 @@ namespace CoreSelfHostedNancy.Modules
 
                 return Response.AsJson(user);
             });
+
+            // post route with custom headers
+            Post("/bind/user", (args) => {
+                User user = new User()
+                {
+                    Name = "Ariel Magbanua",
+                    Address = "Dash10 Building"
+                };
+
+                var companyUser = this.BindTo(
+                        new
+                        {
+                            Company = "Zeald",
+                            User = user
+                        }
+                    );
+
+                object[] headers =
+                {
+                    new
+                    {
+                        Header = "Hello",
+                        Value = "World"
+                    },
+                    new
+                    {
+                        Header = "Authorization",
+                        Value = "Bearer sdakfoasif230948238423dfgsddg"
+                    }
+                };
+
+                return Response.AsJson(companyUser)
+                                .WithHeader("Foo", "Bar")
+                                .WithHeaders(headers);
+            });
         }
 
         private async Task<string> GetFooName()
