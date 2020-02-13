@@ -1,5 +1,6 @@
 ﻿using Nancy;
 using CoreSelfHostedNancy.Models;
+using Nancy.ModelBinding;
 
 namespace CoreSelfHostedNancy.Modules
 {
@@ -27,6 +28,17 @@ namespace CoreSelfHostedNancy.Modules
                 };
 
                 return Response.AsJson((object)user);
+            });
+
+            // Returning model instances as json.
+            Get("/bind/user", (p) => {
+                User user = new User()
+                {
+                    Name = "Ariel Magbanua",
+                    Address = "Dash10 Building"
+                };
+
+                return Response.AsJson(user);
             });
         }
     }
