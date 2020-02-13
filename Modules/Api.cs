@@ -42,6 +42,17 @@ namespace CoreSelfHostedNancy.Modules
                 return Response.AsJson(user);
             });
 
+            // Returning model instances as json with url parameter.
+            Get("/regular/user/{name}", (args) => {
+                User user = new User()
+                {
+                    Name = args.name,
+                    Address = "Dash10 Building"
+                };
+
+                return Response.AsJson(user);
+            });
+
             Get("/bind/user", (args) => {
                 User user = new User()
                 {
