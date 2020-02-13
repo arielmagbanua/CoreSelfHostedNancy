@@ -8,7 +8,7 @@ namespace CoreSelfHostedNancy.Modules
     {
         public Api() : base("api")
         {
-            Get("/", (p) => {
+            Get("/", (args) => {
                 return View["api.html"];
             });
 
@@ -20,7 +20,7 @@ namespace CoreSelfHostedNancy.Modules
             });
 
             // Returning model instances as json response using dynamic
-            Get("/dynamic/user", (p) => {
+            Get("/dynamic/user", (args) => {
                 dynamic user = new User()
                 {
                     Name = "Ariel Magbanua",
@@ -31,7 +31,7 @@ namespace CoreSelfHostedNancy.Modules
             });
 
             // Returning model instances as json.
-            Get("/bind/user", (p) => {
+            Get("/bind/user", (args) => {
                 User user = new User()
                 {
                     Name = "Ariel Magbanua",
