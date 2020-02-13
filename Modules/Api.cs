@@ -42,6 +42,23 @@ namespace CoreSelfHostedNancy.Modules
                 return Response.AsJson(user);
             });
 
+            Get("/bind/user", (args) => {
+                User user = new User()
+                {
+                    Name = "Ariel Magbanua",
+                    Address = "Dash10 Building"
+                };
+
+                var companyUser = this.BindTo(
+                        new {
+                            Company = "Zeald",
+                            User = user
+                        }
+                    );
+
+                return Response.AsJson(companyUser);
+            });
+
             // Async route
             Get("/async/user", async (args, ct) => {
                 User user = new User()
