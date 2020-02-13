@@ -1,6 +1,7 @@
 ﻿using Nancy;
 using CoreSelfHostedNancy.Models;
 using Nancy.ModelBinding;
+using System.Threading.Tasks;
 
 namespace CoreSelfHostedNancy.Modules
 {
@@ -31,7 +32,7 @@ namespace CoreSelfHostedNancy.Modules
             });
 
             // Returning model instances as json.
-            Get("/bind/user", (args) => {
+            Get("/regular/user", (args) => {
                 User user = new User()
                 {
                     Name = "Ariel Magbanua",
@@ -40,6 +41,24 @@ namespace CoreSelfHostedNancy.Modules
 
                 return Response.AsJson(user);
             });
+
+            // Async route
+            Get("/async/user", async (args, ct) => {
+                User user = new User()
+                {
+                    Name = "Ariel Magbanua",
+                    Address = "Dash10 Building"
+                };
+
+                user.Name = await this.GetFooName();
+
+                return Response.AsJson(user);
+            });
+        }
+
+        private async Task<string> GetFooName()
+        {
+            return "Foo Name";
         }
     }
 }
