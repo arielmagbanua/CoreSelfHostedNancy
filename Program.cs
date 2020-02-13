@@ -9,7 +9,9 @@ namespace CoreSelfHostedNancy
         {
             var hostConfigs = new HostConfiguration
             {
-                UrlReservations = new UrlReservations() { CreateAutomatically = true }
+                UrlReservations = new UrlReservations() { 
+                    CreateAutomatically = true 
+                }
             };
 
             Uri uri = new Uri("http://localhost:1234");
