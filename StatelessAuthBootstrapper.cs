@@ -2,6 +2,7 @@
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using Nancy;
+using CoreSelfHostedNancy.Auth;
 
 namespace CoreSelfHostedNancy
 {
@@ -18,12 +19,13 @@ namespace CoreSelfHostedNancy
             var configuration =
                 new StatelessAuthenticationConfiguration(nancyContext =>
                 {
-                    //for now, we will pull the apiKey from the querystring,
-                    //but you can pull it from any part of the NancyContext
+                    // for now, we will pull the apiKey from the querystring,
+                    // but you can pull it from any part of the NancyContext
                     var apiKey = (string)nancyContext.Request.Query.ApiKey.Value;
 
-                    //get the user identity however you choose to (for now, using a static class/method)
-                    return UserDatabase.GetUserFromApiKey(apiKey);
+                    // get the user identity however you choose to (for now, using a static class/method)
+                    // return UserDatabase.GetUserFromApiKey(apiKey);
+                    return Authenticator.AuthenticateToken(apiKey);
                 });
 
             AllowAccessToConsumingSite(pipelines);
