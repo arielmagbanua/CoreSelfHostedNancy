@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ibsgateway831;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,14 @@ namespace CoreSelfHostedNancy.Models
         public User(string username = null)
         {
             Username = username;
+        }
+
+        public GatewayClass CreateGateway()
+        {
+            GatewayClass gw = new GatewayClass();
+            gw.setpath("D:\\Apps\\Infusion\\--DEMO--");
+
+            return gw;
         }
     }
 }
